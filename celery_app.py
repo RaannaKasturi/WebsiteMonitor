@@ -1,4 +1,6 @@
+from bs4 import BeautifulSoup
 from celery import Celery
+from fastapi import requests
 from celeryconfig import broker_url, result_backend
 
 celery_app = Celery('tasks', broker=broker_url, backend=result_backend)
