@@ -18,6 +18,8 @@ def dispScreenshot(cleanedURL):
     return img
 
 def main(URL):
+    URL = URL
+    print(URL)
     if URL == "":
         img = "https://i.ibb.co/s5c9QpD/1366x768.png"
         code = "Please Enter the URL to capture the screenshot."
@@ -30,6 +32,7 @@ def main(URL):
         img = dispScreenshot(cleanedURL)
         code, status, webStatus, moreDetails = dispStatus(cleanedURL)
         return img, code, status, webStatus, moreDetails
+        print(cleanedURL, code, status, webStatus, moreDetails)
 
 app = gr.Interface(
     fn=main,
@@ -50,4 +53,12 @@ app = gr.Interface(
 )
 
 if __name__ == "__main__":
-    app.launch()
+    while True:
+        if getScreenshot.checkinstallChrome() == False:
+            print("App Starting...")
+            app.launch()
+            break
+        else:
+            print("OS not supported or Chrome not found in the system. Retrying...")
+            True
+

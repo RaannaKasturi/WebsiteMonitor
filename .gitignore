@@ -1,3 +1,4 @@
 .env
 /flagged
 /__pycache__
+/.ipynb_checkpoints
