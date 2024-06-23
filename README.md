@@ -9,5 +9,5 @@
 - [ ] Database connection to store data for long time
 - [ ] Receieve mails for website down
 - [ ] Receive telegram message for website down
-- [ ] Shift from Gradio UI to any other, preferably Django or ReactJS
+- [ ] Shift from Gradio UI to any other, preferably Django or ReactJS<br>
 ...Still Thinking. If you have any Ideas💡, ping me!
