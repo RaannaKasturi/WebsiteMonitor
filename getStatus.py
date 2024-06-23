@@ -52,24 +52,3 @@ def getStatus(code):
                 return "Unable to fetch website status. Please contact us for assistance", "Unable to fetch website status. Please contact us for assistance", "Unable to fetch website status. Please contact us for assistance", "Unable to fetch website status. Please contact us for assistance"
         except KeyError:
             return "Unable to fetch website status", "Unable to fetch website status", "Unable to fetch website status", "Unable to fetch website status"
-
-
-app = gr.Interface(
-    fn=postStatus,
-    inputs = [
-        gr.Textbox(label="Enter URL", placeholder="https://google.com", type="text")
-    ],
-    outputs = [
-        gr.Textbox(label="Code", type="text"),
-        gr.Textbox(label="Server/Website Status", type="text"),
-        gr.Textbox(label="Code Status", type="text"),
-        gr.Textbox(label="More Code Status Information", type="text")
-    ],
-    title="Website HTTP Status Checker<br> by <a href='https://nayankasturi.eu.org'>Nayan Kasturi</a> aka Raanna.<br> Checkout my <a href='https://github.com/raannakasturi'>Github</a> for more projects and contact info.",
-    description="This app scans the website for HTTP statuses.<br> Licenced under <a href='https://creativecommons.org/licenses/by-nc-sa/4.0/'>cc-by-nc-sa-4.0</a>",
-    api_name="get",
-    concurrency_limit=10
-)
-
-if __name__ == "__main__":
-    app.launch()

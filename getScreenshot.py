@@ -60,19 +60,24 @@ def uploadandDelSS(file):
     api = os.getenv("IMGBBAPI")
     url = os.getenv("IMGBBURL")
     filename = file
-    with open(f"{filename}", "rb") as file:
-        name = file.name[:-4]
-        payload = {
-            "key": api,
-            "image": base64.b64encode(file.read()),
-            "name": name,
-            "expiration": "15552000"
-        }
-        r = requests.post(url, data=payload)
-        view_url = json.loads(r.text)["data"]["display_url"]
-        return view_url, view_url
+    try:
+        with open(f"{filename}", "rb") as file:
+            name = file.name[:-4]
+            payload = {
+                "key": api,
+                "image": base64.b64encode(file.read()),
+                "name": name,
+                "expiration": "15552000"
+            }
+            r = requests.post(url, data=payload)
+            view_url = json.loads(r.text)["data"]["display_url"]
+            return view_url, view_url
+    except Exception as e:
+        print(f"Error: {e}")
+        return "https://i.ibb.co/s5c9QpD/1366x768.png", "Error in uploading the image. Please try again."
+    os.remove(filename)
 
-def main(url):
+def getScreenshot(url):
     if url == "":
         img = "https://i.ibb.co/s5c9QpD/1366x768.png"
         imgurl = "Please Enter the URL to capture the screenshot."
@@ -80,22 +85,8 @@ def main(url):
     else:
         ss = saveScreenshot(url)
         img, imgurl = uploadandDelSS(ss)
+        os.remove(ss)
         return img, imgurl
-
-app = gr.Interface(
-    fn=main,
-    inputs=[
-        gr.Textbox(label="Enter URL", placeholder="https://google.com", type="text", interactive=True)
-    ],
-    outputs=[
-        gr.Image(label="Website Screenshot"),
-        gr.Textbox(label="Image URL", type="text", show_copy_button=True, interactive=False)
-    ],
-    title="Website Screenshot Capture<br> by <a href='https://nayankasturi.eu.org'>Nayan Kasturi</a> aka Raanna.<br> Checkout the <a href='https://github.com/raannakasturi'>Github</a> for more projects and contact info.",
-    description="This app captures a screenshot of the website you enter and displays it.<br> Licenced under <a href='https://creativecommons.org/licenses/by-nc-sa/4.0/'>cc-by-nc-sa-4.0</a>",
-    api_name="capture",
-    concurrency_limit=10
-)
 
 def checkSystem():
     OS = sys.platform
@@ -118,13 +109,3 @@ def checkinstallChrome():
     else:
         print("Can't check for Chrome installation or install Chrome. Exiting..")
         return False
-
-if __name__ == "__main__":
-    while True:
-        if checkinstallChrome() == False:
-            print("App Starting...")
-            app.launch()
-            break
-        else:
-            print("OS not supported or Chrome not found in the system. Retrying...")
-            True
