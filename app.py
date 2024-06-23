@@ -44,7 +44,7 @@ app = gr.Interface(
         gr.Textbox(label="More Code Status Information", type="text")
     ],
     title="Website Monitor<br><h3>by <a href='https://nayankasturi.eu.org'>Nayan Kasturi</a> aka Raanna.</h3><br><p>Checkout my <a href='https://github.com/raannakasturi'>Github</a> for more projects and contact info.</p>",
-    description="This app scans the website for HTTP statuses and also screenshots it.<br> Licenced under <a href='https://github.com/RaannaKasturi/WebsiteMonitor/blob/master/LICENSE/'>GNU Affero General Public License v3.0</a>",
+    description="This app scans the website for HTTP statuses and also screenshots it.<br> Licenced under <a href='https://github.com/RaannaKasturi/WebsiteMonitor/blob/master/LICENSE/'>MIT License</a>",
     api_name="get",
     concurrency_limit=25
 )
