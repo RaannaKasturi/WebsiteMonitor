@@ -4,7 +4,7 @@
 
 - [x] Gets Website Status
 - [x] Gets Website Screenshot
-- [ ] Setup auto website checker that checks the website after every few hours (3 Hours)
+- [x] Setup auto website checker that checks the website after every few hours (3 Hours)
 - [ ] Ability to check website in between those 3 hours, manually
 - [ ] Database connection to store data for long time
 - [ ] Receieve mails for website down
