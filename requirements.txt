@@ -1,0 +1,5 @@
+gradio==4.36.1
+requests==2.32.3
+selenium==4.22.0
+selenium-stealth==1.0.6
+webdriver-manager==4.0.1
