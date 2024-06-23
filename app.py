@@ -50,4 +50,11 @@ app = gr.Interface(
 )
 
 if __name__ == "__main__":
-    app.launch()
+    while True:
+        if getScreenshot.checkinstallChrome() == False:
+            print("App Starting...")
+            app.launch()
+            break
+        else:
+            print("OS not supported or Chrome not found in the system. Retrying...")
+            True
