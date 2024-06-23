@@ -17,9 +17,8 @@ def dispScreenshot(cleanedURL):
     img, imgurl = getScreenshot.getScreenshot(cleanedURL)
     return img
 
-def main(URL):
+def fetchWebsiteInfo(URL):
     URL = URL
-    print(URL)
     if URL == "":
         img = "https://i.ibb.co/s5c9QpD/1366x768.png"
         code = "Please Enter the URL to capture the screenshot."
@@ -35,7 +34,7 @@ def main(URL):
         print(cleanedURL, code, status, webStatus, moreDetails)
 
 app = gr.Interface(
-    fn=main,
+    fn=fetchWebsiteInfo,
     inputs = [
         gr.Textbox(label="Enter URL", placeholder="https://google.com", type="text")
     ],
