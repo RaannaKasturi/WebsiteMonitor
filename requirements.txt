@@ -4,3 +4,5 @@ selenium==4.22.0
 selenium-stealth==1.0.6
 webdriver-manager==4.0.1
 chrome-version==0.3.1
+psycopg2==2.9.9
+tldextract==5.1.2
