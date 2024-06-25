@@ -23,6 +23,6 @@
       -- [ ] if domain is inactive/down for more than 25 times check at 3 hours intervals
       -- [ ] if domain is inactive/down for more than 50 times check at 6 hours intervals
       -- [ ] if domain is inactive/down for more than 75 times check at 12 hours intervals
-      -- [ ] if domain is inactive/down for more than 192 times check at 24 hours intervals
+      -- [ ] if domain is inactive/down for more than 100 times check at 24 hours intervals
 - [ ] Shift from Gradio UI to any other, preferably Django or ReactJS<br>
       ...Still Thinking. If you have any Ideas💡, ping me!
