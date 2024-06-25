@@ -83,7 +83,7 @@ def saveData():
         print(f"Website for {domain} is {status}")
     else:
         # Update existing data based on website status
-        existing_status, existing_downcount = existing_data
+        existing_downcount = existing_data
         if status == "Up":
             downcount = 0  # Reset downcount if website is Up
         else:
