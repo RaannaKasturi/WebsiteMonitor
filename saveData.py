@@ -58,7 +58,7 @@ def update(domain, status, downcount):
 def getData(EMAIL, URL, downcount):
     cleanedURL = cleanURL(URL)
     data = dispStatus(cleanedURL)
-    if data[0] == "200":
+    if data[0].startswith == "2" or data[0].startswith == "3":
         status = "Up"
         downcount = 0
     else:
