@@ -6,7 +6,7 @@ def cleanURL(URL):
     if URL.startswith("http://") or URL.startswith("https://"):
         websiteURL = URL
     else:
-        websiteURL = "http://" + URL
+        websiteURL = "https://" + URL
     return websiteURL
 
 def dispStatus(cleanedURL):
@@ -31,7 +31,6 @@ def fetchWebsiteInfo(URL):
         img = dispScreenshot(cleanedURL)
         code, status, webStatus, moreDetails = dispStatus(cleanedURL)
         return img, code, status, webStatus, moreDetails
-        print(cleanedURL, code, status, webStatus, moreDetails)
 
 app = gr.Interface(
     fn=fetchWebsiteInfo,
