@@ -91,7 +91,7 @@ def getData(EMAIL, URL, downcount):
     email = EMAIL
     return domain, email, status, downcount
 
-def saveData(URL, email):
+def saveDataSendMail(URL, email):
     domain, email, status, downcount = getData(email, URL, 0)
     existing_downcount = get(domain)
 
@@ -101,17 +101,17 @@ def saveData(URL, email):
             downcount = 0
         else:
             downcount = existing_downcount + 1
-            sendMail(email, domain, status)
+            mailStatus = sendMail(email, domain, status)
         insert(domain, email, status, downcount)
     else:
         if status == "Up":
             downcount = 0
         else:
             downcount = existing_downcount + 1
-            sendMail(email, domain, status)
+            mailStatus = sendMail(email, domain, status)
         update(domain, status, downcount)
-    
     print(f"{domain} is currently {status}")
+    return email, downcount, mailStatus
 
 def sendMail(recipient_email, website_domain, status):
     """Sends an email notification to the user when the website is down."""
@@ -129,10 +129,7 @@ def sendMail(recipient_email, website_domain, status):
         with smtplib.SMTP_SSL(smtp_server, smtp_port, context=context) as server:
             server.login(sender_email, sender_password)
             server.sendmail(sender_email, recipient_email, message.as_string())
-            print(f"Sent email notification for {website_domain} to {recipient_email}")
+            return f"Sent email notification for {website_domain} to {recipient_email}"
     except Exception as e:
-        print(f"Error sending email: {e}")
+        return f"Error sending email: {e}"
 
-if __name__ == "__main__":
-    saveData("raannakasturi.eu.org","raannakasturi@proton.me")
-    saveData("arkgl.eu.org","raannakasturi@proton.me")

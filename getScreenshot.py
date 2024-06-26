@@ -4,7 +4,6 @@ import json
 import base64
 import time
 import requests
-import gradio as gr
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
@@ -18,7 +17,7 @@ def driverSetup():
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-gpu")
-    options.add_argument("start-maximized")
+    options.add_argument("--start-maximized")
     options.add_argument("--headless=new")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option('useAutomationExtension', False)
@@ -75,7 +74,6 @@ def uploadandDelSS(file):
     except Exception as e:
         print(f"Error: {e}")
         return "https://i.ibb.co/s5c9QpD/1366x768.png", "Error in uploading the image. Please try again."
-    os.remove(filename)
 
 def getScreenshot(url):
     if url == "":

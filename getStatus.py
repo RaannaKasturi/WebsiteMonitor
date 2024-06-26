@@ -1,32 +1,23 @@
-import gradio as gr
 import requests
 
-def cleanURL(URL):
-    if URL.startswith("http://") or URL.startswith("https://"):
-        websiteURL = URL
-    else:
-        websiteURL = "http://" + URL
-    return websiteURL
-
-def postStatus(websiteURL):
+def getStatus(URL):
     try:
-        URL = cleanURL(websiteURL)
         headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
         webResponse = requests.get(URL, headers=headers)
         webCode = str(webResponse.status_code)
-        code, status, webStatus, moreDetails = getStatus(webCode)
+        code, status, webStatus, moreDetails = statusCodes(webCode)
         return code, status, webStatus, moreDetails
     except requests.ConnectionError:
-        error = f"Failed to connect to {websiteURL}"
+        error = f"Failed to connect to {URL}"
         return error, error, error, error
     except requests.Timeout:
-        error = f"Request to {websiteURL} timed out"
+        error = f"Request to {URL} timed out"
         return error, error, error, error
     except requests.RequestException as e:
         error = f"An error occurred: {e}"
         return error, error, error, error
     
-def getStatus(code):
+def statusCodes(code):
         try:
             if code.startswith("2"):
                 status = f"Website is Online and Accessible"
