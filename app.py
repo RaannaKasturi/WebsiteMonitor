@@ -9,7 +9,7 @@ app = gr.Interface(
     fn=run,
     inputs=[
         gr.Textbox(label="Enter URL", placeholder="https://google.com", type="text", interactive=True),
-        gr.Textbox(label="Enter Email", placeholder="raannakasturi@proton.me", type="text", interactive=True)
+        gr.Textbox(label="Enter Email", placeholder="example@gmail.com", type="text", interactive=True)
     ],
     outputs=[
         gr.Textbox(label="Domain", type="text", interactive=False),
@@ -22,9 +22,9 @@ app = gr.Interface(
         gr.Textbox(label="Email", type="text", interactive=False),
         gr.Textbox(label="Download Count", type="text", interactive=False),
     ],
-    title="Website Screenshot Capture<br> by <a href='https://nayankasturi.eu.org'>Nayan Kasturi</a> aka Raanna.<br> Checkout the <a href='https://github.com/raannakasturi'>Github</a> for more projects and contact info.",
-    description="This app captures a screenshot of the website you enter and displays it.<br> Licenced under <a href='https://creativecommons.org/licenses/by-nc-sa/4.0/'>cc-by-nc-sa-4.0</a>",
-    api_name="capture",
+    title="Website Monitor<br> by <a href='https://nayankasturi.eu.org'>Nayan Kasturi</a> aka Raanna.<br> Checkout the <a href='https://github.com/raannakasturi'>Github</a> for more projects and contact info.",
+    description="This app captures website status and its screenshot and displays it, along with sending mail to the person, in case website is down.",
+    api_name="get",
     concurrency_limit=10
 )
 
