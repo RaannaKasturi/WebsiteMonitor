@@ -101,17 +101,17 @@ def saveDataSendMail(URL, email):
             downcount = 0
         else:
             downcount = existing_downcount + 1
-            mailStatus = sendMail(email, domain, status)
+            sendMail(email, domain, status)
         insert(domain, email, status, downcount)
     else:
         if status == "Up":
             downcount = 0
         else:
             downcount = existing_downcount + 1
-            mailStatus = sendMail(email, domain, status)
+            sendMail(email, domain, status)
         update(domain, status, downcount)
     print(f"{domain} is currently {status}")
-    return email, downcount, mailStatus
+    return email, downcount,
 
 def sendMail(recipient_email, website_domain, status):
     """Sends an email notification to the user when the website is down."""

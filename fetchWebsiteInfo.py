@@ -10,7 +10,7 @@ def cleanURL(URL):
     return websiteURL
 
 def dispStatus(cleanedURL):
-    code, status, webStatus, moreDetails = getStatus.postStatus(cleanedURL)
+    code, status, webStatus, moreDetails = getStatus.getStatus(cleanedURL)
     return code, status, webStatus, moreDetails
 
 def dispScreenshot(cleanedURL):

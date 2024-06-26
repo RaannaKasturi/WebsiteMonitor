@@ -43,10 +43,14 @@ def screenshotName(url):
     return f"{url.replace('/', '')}_{timestr}.png"
 
 def getScreenshots(driver, url):
-    driver.get(url)
-    ssname = screenshotName(url)
-    driver.save_screenshot(ssname)
-    return ssname
+    try:
+        driver.get(url)
+        ssname = screenshotName(url)
+        driver.save_screenshot(ssname)
+        return ssname
+    except Exception as e:
+        print(f"Error: {e}")
+        return "https://i.ibb.co/s5c9QpD/1366x768.png"
 
 def saveScreenshot(url):
     driver = driverSetup()
