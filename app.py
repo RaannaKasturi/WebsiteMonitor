@@ -29,5 +29,5 @@ app = gr.Interface(
 )
 
 if __name__ == "__main__":
-    #installGC()
+    installGC()
     app.launch()

@@ -2,7 +2,7 @@ from datetime import datetime
 import time
 import pytz
 import schedule
-from fetchWebsiteInfo import fetchWebsiteInfo
+from remove_fetchWebsiteInfo import fetchWebsiteInfo
 
 def job():
     data = fetchWebsiteInfo("https://google.com")

@@ -10,7 +10,6 @@ from selenium.webdriver.chrome.options import Options
 from selenium_stealth import stealth
 from webdriver_manager.chrome import ChromeDriverManager
 from dotenv import load_dotenv
-import checkinstallGC
 
 def driverSetup():
     options = Options()
@@ -90,25 +89,3 @@ def getScreenshot(url):
         img, imgurl = uploadandDelSS(ss)
         os.remove(ss)
         return img, imgurl
-
-def checkSystem():
-    OS = sys.platform
-    if OS.startswith('linux'):
-        print("Linux OS detected.")
-        return "linux"
-    elif OS.startswith('win32') or OS.startswith('cygwin'):
-        print("Windows OS detected.")
-        return "windows"
-    else:
-        print("Unsupported OS. We are currently supported on Windows and Linux only.")
-        return "unsupported"
-
-def checkinstallChrome():
-    OS = checkSystem()
-    if OS == "linux":
-        return checkinstallGC.checkGC("linux")
-    elif OS == "windows":
-        return checkinstallGC.checkGC("windows")
-    else:
-        print("Can't check for Chrome installation or install Chrome. Exiting..")
-        return False

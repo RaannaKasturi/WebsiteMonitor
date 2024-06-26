@@ -23,7 +23,8 @@ def getData(url, email):
     return domain, URL, code, status, webStatus, moreDetails, img, imgurl, email, downcount
 
 def installGC():
-    if sys.platform == 'linix':
+    OS = sys.platform
+    if OS == 'linux':
         subprocess.run(['apt-get', 'update'])
         subprocess.run(['apt-get', 'install', '-y', 'wget', 'unzip'])
         subprocess.run(['wget', 'https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb'])

@@ -2,7 +2,7 @@ import psycopg2
 from psycopg2 import sql
 from dotenv import load_dotenv
 import os
-from fetchWebsiteInfo import dispStatus
+from remove_fetchWebsiteInfo import dispStatus
 import tldextract
 import smtplib
 from email.mime.text import MIMEText
