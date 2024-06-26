@@ -50,7 +50,8 @@ def getScreenshots(driver, url):
         return ssname
     except Exception as e:
         print(f"Error: {e}")
-        return "https://i.ibb.co/s5c9QpD/1366x768.png"
+        ssname = "1366-768.png"
+        return ssname
 
 def saveScreenshot(url):
     driver = driverSetup()
