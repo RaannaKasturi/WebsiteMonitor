@@ -12,14 +12,14 @@ app = gr.Interface(
         gr.Textbox(label="Enter Email", placeholder="example@gmail.com", type="email", interactive=True)
     ],
     outputs=[
-        gr.Textbox(label="Domain", type="text", interactive=False, allow_copy=True),
-        gr.Textbox(label="URL", type="text", interactive=False, allow_copy=True),
+        gr.Textbox(label="Domain", type="text", interactive=False),
+        gr.Textbox(label="URL", type="text", interactive=False),
         gr.Textbox(label="Code", type="text", interactive=False),
         gr.Textbox(label="Status", type="text", interactive=False),
         gr.Textbox(label="Web Status", type="text", interactive=False),
-        gr.Textbox(label="More Details", type="text", interactive=False, allow_copy=True),
+        gr.Textbox(label="More Details", type="text", interactive=False),
         gr.Image(label="Website Screenshot"),
-        gr.Textbox(label="Screenshot URL/Error", type="text", interactive=False, allow_copy=True),
+        gr.Textbox(label="Screenshot URL/Error", type="text", interactive=False),
         gr.Textbox(label="Email", type="email", interactive=False),
         gr.Textbox(label="Download Count", type="text", interactive=False),
     ],
@@ -30,5 +30,5 @@ app = gr.Interface(
 )
 
 if __name__ == "__main__":
-    #installGC()
+    installGC()
     app.launch()
