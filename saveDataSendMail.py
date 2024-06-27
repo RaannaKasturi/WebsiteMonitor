@@ -32,12 +32,11 @@ def insert(domain, email, status, downcount):
         """
         cursor.execute(insertData, (domain, email, status, downcount))
         conn.commit()
+        cursor.close()
+        conn.close()
         print(f"Data for {domain} inserted successfully.")
     except Exception as e:
         print(f"Error inserting data for {domain}: {e}")
-    finally:
-        cursor.close()
-        conn.close()
 
 def get(domain):
     try:
@@ -48,6 +47,8 @@ def get(domain):
         """
         cursor.execute(getData, (domain,))
         existing_data = cursor.fetchone()
+        cursor.close()
+        conn.close()
         if existing_data:
             return existing_data[1]
         else:
@@ -55,9 +56,6 @@ def get(domain):
     except Exception as e:
         print(f"Error retrieving data for {domain}: {e}")
         return None
-    finally:
-        cursor.close()
-        conn.close()
 
 def update(domain, status, downcount):
     try:
@@ -68,12 +66,11 @@ def update(domain, status, downcount):
         """
         cursor.execute(updateData, (status, downcount, domain))
         conn.commit()
+        cursor.close()
+        conn.close()
         print(f"Data for {domain} updated successfully.")
     except Exception as e:
         print(f"Error updating data for {domain}: {e}")
-    finally:
-        cursor.close()
-        conn.close()
 
 def getData(EMAIL, URL, downcount):
     data = getStatus(URL)
@@ -94,24 +91,24 @@ def getData(EMAIL, URL, downcount):
 def saveDataSendMail(URL, email):
     domain, email, status, downcount = getData(email, URL, 0)
     existing_downcount = get(domain)
-
+    mailStatus = f"Website online. No mail sent for {domain}"
     if existing_downcount is None:
         existing_downcount = 0
         if status == "Up":
             downcount = 0
         else:
             downcount = existing_downcount + 1
-            sendMail(email, domain, status)
+            mailStatus = sendMail(email, domain, status)
         insert(domain, email, status, downcount)
     else:
         if status == "Up":
             downcount = 0
         else:
             downcount = existing_downcount + 1
-            sendMail(email, domain, status)
+            mailStatus = sendMail(email, domain, status)
         update(domain, status, downcount)
     print(f"{domain} is currently {status}")
-    return email, downcount
+    return email, downcount, mailStatus
 
 def sendMail(recipient_email, website_domain, status):
     """Sends an email notification to the user when the website is down."""
@@ -129,7 +126,7 @@ def sendMail(recipient_email, website_domain, status):
         with smtplib.SMTP_SSL(smtp_server, smtp_port, context=context) as server:
             server.login(sender_email, sender_password)
             server.sendmail(sender_email, recipient_email, message.as_string())
-            return f"Sent email notification for {website_domain} to {recipient_email}"
+            mailStatus = f"Sent email notification for {website_domain} to {recipient_email}"
     except Exception as e:
-        return f"Error sending email: {e}"
-
+        mailStatus =  f"Error sending email: {e}"
+    return mailStatus

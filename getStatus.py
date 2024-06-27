@@ -3,7 +3,7 @@ import requests
 def getStatus(URL):
     try:
         headers = {'User-Agent': 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +https://www.google.com/bot.html) Safari/537.36'}
-        webResponse = requests.get(URL, headers=headers, timeout=10)
+        webResponse = requests.get(URL, headers=headers, timeout=5)
         webCode = str(webResponse.status_code)
         code, status, webStatus, moreDetails = statusCodes(webCode)
         return code, status, webStatus, moreDetails
