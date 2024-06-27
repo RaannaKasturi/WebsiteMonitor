@@ -9,16 +9,20 @@ def cleanURL(inputURL):
     url = tldextract.extract(inputURL)
     if url.subdomain == "":
         domain = url.domain + "." + url.suffix
-        URL = "http://" + domain
+        URL = "https://" + domain
     else:
         domain = url.subdomain + "." + url.domain + "." + url.suffix
-        URL = "http://" + domain
+        URL = "https://" + domain
     return domain, URL
 
 def getData(url, email):
     domain, URL = cleanURL(url)
     code, status, webStatus, moreDetails = getStatus(URL)
-    img, imgurl = getScreenshot(URL)
+    if code.startswith("2"):
+        img, imgurl = getScreenshot(URL)
+    else:
+        img = "1366-768.png"
+        imgurl = "Website is down. No screenshot available."
     email, downcount = saveDataSendMail(URL, email)
     return domain, URL, code, status, webStatus, moreDetails, img, imgurl, email, downcount
 

@@ -2,7 +2,7 @@ import psycopg2
 from psycopg2 import sql
 from dotenv import load_dotenv
 import os
-from remove_fetchWebsiteInfo import dispStatus
+from getStatus import getStatus
 import tldextract
 import smtplib
 from email.mime.text import MIMEText
@@ -76,7 +76,7 @@ def update(domain, status, downcount):
         conn.close()
 
 def getData(EMAIL, URL, downcount):
-    data = dispStatus(URL)
+    data = getStatus(URL)
     if data[0].startswith("2") or data[0].startswith("3"):
         status = "Up"
         downcount = 0
@@ -111,7 +111,7 @@ def saveDataSendMail(URL, email):
             sendMail(email, domain, status)
         update(domain, status, downcount)
     print(f"{domain} is currently {status}")
-    return email, downcount,
+    return email, downcount
 
 def sendMail(recipient_email, website_domain, status):
     """Sends an email notification to the user when the website is down."""
